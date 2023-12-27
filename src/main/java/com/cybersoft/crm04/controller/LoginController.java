@@ -30,34 +30,37 @@ public class LoginController {
 //            System.out.println(data.getEmail());
 //        }
 
-        Cookie[] cookies = request.getCookies();
-
-        if (cookies != null && cookies.length > 0) {
-            for (Cookie cookie: cookies) {
-                String name = cookie.getName();
-                String value = cookie.getValue();
-
-                String cookie_email_value;
-                String cookie_password_value;
-
-                if (name.equals("email")) {
-                    cookie_email_value = value;
-                    model.addAttribute("cookie_email_value", cookie_email_value);
-                }
-
-                if (name.equals("password")) {
-                    cookie_password_value = value;
-                    model.addAttribute("cookie_password_value", cookie_password_value);
-                }
-            }
-        }
+//        Cookie[] cookies = request.getCookies();
+//
+//        if (cookies != null && cookies.length > 0) {
+//            for (Cookie cookie: cookies) {
+//                String name = cookie.getName();
+//                String value = cookie.getValue();
+//
+//                String cookie_email_value;
+//                String cookie_password_value;
+//
+//                if (name.equals("email")) {
+//                    cookie_email_value = value;
+//                    model.addAttribute("cookie_email_value", cookie_email_value);
+//                }
+//
+//                if (name.equals("password")) {
+//                    cookie_password_value = value;
+//                    model.addAttribute("cookie_password_value", cookie_password_value);
+//                }
+//            }
+//        }
         return "login";
     }
 
     @PostMapping("")
-    public String procressLogin(Model model, @RequestParam String email, @RequestParam String password, @RequestParam boolean remember, HttpServletResponse response) {
+    public String procressLogin(Model model, @RequestParam String email, @RequestParam String password, boolean remember, HttpServletResponse response) {
 
         boolean isSuccess = false;
+
+        //user: nguyenvana@gmail.com
+        //pass: !@#$%^&*
 
         List<UsersEntity> listUsers = usersRepository.findByEmailAndPassword(email, password);
 
@@ -70,7 +73,7 @@ public class LoginController {
 //                response.addCookie(u_password);
 //            }
 
-            return "login";
+            return "redirect:/dashboard";
 
         } else {
             System.out.println("Đăng nhập thất bại");
