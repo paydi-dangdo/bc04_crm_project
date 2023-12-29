@@ -130,7 +130,7 @@
                     <div class="col-md-2 col-12"></div>
                     <div class="col-md-8 col-xs-12">
                         <div class="white-box">
-                            <form class="form-horizontal form-material" th:action="@{/role}" method="POST">
+                            <form class="form-horizontal form-material" th:action="@{/role/add}" method="POST">
                                 <div class="form-group">
                                     <label class="col-md-12">Tên quyền</label>
                                     <div class="col-md-12">
@@ -148,6 +148,16 @@
                                     <div class="col-sm-12">
                                         <button type="submit" class="btn btn-success">Add Role</button>
                                         <a href="role-table.html" class="btn btn-primary">Quay lại</a>
+                                    </div>
+                                </div>
+                                <div th:if="${result == true}" class="alert alert-primary d-flex align-items-center" role="alert">
+                                    <div>
+                                        Thêm role thành công
+                                    </div>
+                                </div>
+                                <div th:if="${result == false}" class="alert alert-primary d-flex align-items-center" role="alert">
+                                    <div>
+                                        Thêm role thất bại
                                     </div>
                                 </div>
                             </form>
